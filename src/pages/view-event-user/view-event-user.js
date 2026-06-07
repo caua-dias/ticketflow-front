@@ -54,9 +54,7 @@ async function carregarEvento() {
     }
 }
 
-// Ação de Compra
 document.getElementById('btn-buy').addEventListener('click', () => {
-    alert("Redirecionando para a área de pagamento Pix...");
+    window.location.href = `../user-payment/user-payment.html?id=${eventId}`;
 });
-
 carregarEvento();
