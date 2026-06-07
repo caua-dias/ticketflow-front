@@ -3,12 +3,18 @@ import { saveEvent } from "../../shared/eventService.js";
 const form = document.getElementById('form-create-event');
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const novoEvento = {
         titulo: document.getElementById('nome').value,
         categoria: document.getElementById('tipo').value,
-        imagem: null 
+        descricao: document.getElementById('descricao').value,
+        data: document.getElementById('data').value,
+        horario: document.getElementById('horario').value,
+        capacidade: document.getElementById('capacidade').value,
+        preco: document.getElementById('preco').value,
+        local: document.getElementById('local').value,
+        imagem: null
     };
 
     // Salva o evento
