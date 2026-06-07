@@ -26,7 +26,7 @@ function renderEvents(events) {
                         <span class="card-category">${event.categoria || 'CATEGORIA'}</span>
                         <h3 class="card-title">${event.titulo}</h3>
                         
-                        <p class="card-details">12 Out 2024 • 21:00 • 5.000 lugares</p>
+                        <p class="card-details">${event.data ? event.data.split('-').reverse().join('/') : 'Sem data'} • ${event.horario || '--:--'} • ${event.capacidade || '0'} lugares</p>
 
                         <div class="card-actions">
                             <button class="btn-action">Ver</button>
