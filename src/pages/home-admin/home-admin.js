@@ -1,4 +1,4 @@
-import { getEvents } from "../../shared/eventService.js";
+import { getEvents, deleteEvent } from "../../shared/eventService.js";
 
 function renderEvents(events) {
     const container = document.getElementById("events");
@@ -30,8 +30,8 @@ function renderEvents(events) {
 
                         <div class="card-actions">
                             <button class="btn-action">Ver</button>
-                            <button class="btn-action">Editar</button>
-                            <button class="btn-action btn-delete">Excluir</button>
+                            <button class="btn-action btn-edit" data-id="${event.id}">Editar</button>
+                            <button class="btn-action btn-delete" data-id="${event.id}">Excluir</button>
                         </div>
                     </div>
                 </div>
@@ -39,6 +39,26 @@ function renderEvents(events) {
         </div>
     `;
 }
+
+document.getElementById("events").addEventListener("click", async (e) => {
+    // Se clicou no botão de Editar
+    if (e.target.classList.contains("btn-edit")) {
+        const id = e.target.getAttribute("data-id");
+        // Redireciona passando o ID na URL
+        window.location.href = `../edit-event-admin/edit-event-admin.html?id=${id}`;
+    }
+
+    // Se clicou no botão de Excluir
+    if (e.target.classList.contains("btn-delete")) {
+        const id = e.target.getAttribute("data-id");
+        const confirmacao = confirm("Tem certeza que deseja excluir este evento?");
+        
+        if (confirmacao) {
+            await deleteEvent(id);
+            init(); // Recarrega a lista atualizada
+        }
+    }
+});
 
 async function init() {
     const events = await getEvents();
