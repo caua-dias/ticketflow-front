@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #FFFFFF;
+}
+
+/* Header Padrão */
+.header { position: fixed; top: 0; width: 100%; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 10; }
+.logo { display: flex; align-items: center; }
+.logo .material-symbols-outlined { color: #00D2DF; font-size: 28px; }
+.text-logo { font-weight: 700; font-size: 1.25rem; padding-left: 0.5rem; }
+.admin-text { color: #00D2DF; font-weight: 400; }
+.header-nav { display: flex; gap: 1.5rem; }
+.header-nav a { color: var(--gray-text); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.header-nav a:hover { color: #FFFFFF; }
+
+/* Estrutura Principal */
+.main-content {
+    padding: 7rem 2rem 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.back-link {
+    color: var(--gray-text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+.back-link:hover { color: #FFFFFF; }
+
+/* Grid de Layout Dividido */
+.event-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Esquerda ocupa 2 partes, Direita ocupa 1 */
+    gap: 2rem;
+    align-items: start;
+}
+
+/* --- LADO ESQUERDO --- */
+/* Banner de Imagem com Gradiente */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    /* Faz um degradê escuro de baixo para cima para o texto ficar legível */
+    background: linear-gradient(to top, rgba(16, 25, 46, 1) 0%, rgba(16, 25, 46, 0) 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.category-badge {
+    color: #00D2DF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.hero-overlay h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Seção Sobre */
+.section-sobre h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.section-sobre p {
+    color: var(--gray-text);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Grid de Informações (Data, Hora, Capacidade) */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.info-box {
+    background-color: var(--box-color);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+}
+
+.info-box label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--gray-text);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.info-box p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.full-width {
+    grid-column: 1 / -1; /* Faz o box de Local ocupar a linha inteira */
+}
+
+/* --- LADO DIREITO (Painel Admin) --- */
+.admin-panel {
+    background-color: var(--box-color);
+    padding: 2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-subtitle {
+    font-size: 0.75rem;
+    color: var(--gray-text);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.price-info {
+    margin-bottom: 2rem;
+}
+
+.price-info span {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+}
+
+.price-info h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0.2rem;
+}
+
+.panel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.panel-actions button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background-color: var(--button-color);
+    color: #FFFFFF;
+}
+
+.btn-edit:hover {
+    filter: brightness(1.1);
+}
+
+.btn-delete {
+    background-color: transparent;
+    border: 1px solid #FF4D4D !important;
+    color: #FF4D4D;
+}
+
+.btn-delete:hover {
+    background-color: #3A202A;
+}
+
+/* Responsividade simples para telas menores */
+@media (max-width: 768px) {
+    .event-layout { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+}

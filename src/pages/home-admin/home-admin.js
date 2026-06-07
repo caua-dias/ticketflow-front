@@ -29,7 +29,7 @@ function renderEvents(events) {
                         <p class="card-details">${event.data ? event.data.split('-').reverse().join('/') : 'Sem data'} • ${event.horario || '--:--'} • ${event.capacidade || '0'} lugares</p>
 
                         <div class="card-actions">
-                            <button class="btn-action">Ver</button>
+                            <button class="btn-action btn-view" data-id="${event.id}">Ver</button>
                             <button class="btn-action btn-edit" data-id="${event.id}">Editar</button>
                             <button class="btn-action btn-delete" data-id="${event.id}">Excluir</button>
                         </div>
@@ -57,6 +57,12 @@ document.getElementById("events").addEventListener("click", async (e) => {
             await deleteEvent(id);
             init(); // Recarrega a lista atualizada
         }
+    }
+
+    //Click botão Ver
+    if (e.target.classList.contains("btn-view")) {
+        const id = e.target.parentElement.querySelector('.btn-edit').getAttribute("data-id");
+        window.location.href = `../view-event-admin/view-event-admin.html?id=${id}`;
     }
 });
 
