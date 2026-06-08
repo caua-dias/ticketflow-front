@@ -1,3 +1,8 @@
+import { protegerRota } from "../../shared/authService.js";
+
+// Exige que a pessoa esteja logada E seja um 'Manager'
+protegerRota('Manager');
+
 import { getEventById, updateEvent, saveEvent } from "../../shared/eventService.js";
 
 const urlParams = new URLSearchParams(window.location.search);

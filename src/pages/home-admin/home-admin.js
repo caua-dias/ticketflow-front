@@ -1,3 +1,7 @@
+import { protegerRota } from "../../shared/authService.js";
+
+// Exige que a pessoa esteja logada E seja um 'Manager'
+protegerRota('Manager');
 import { getEvents, deleteEvent } from "../../shared/eventService.js";
 
 function renderEvents(events) {
@@ -65,6 +69,15 @@ document.getElementById("events").addEventListener("click", async (e) => {
         window.location.href = `../view-event-admin/view-event-admin.html?id=${id}`;
     }
 });
+
+const btnLogout = document.getElementById('btn-logout');
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        limparSessao();
+        window.location.href = "../login/login.html";
+    });
+}
 
 async function init() {
     const events = await getEvents();

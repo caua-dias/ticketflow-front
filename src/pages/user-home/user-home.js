@@ -1,3 +1,8 @@
+import { protegerRota } from "../../shared/authService.js";
+
+// Exige que a pessoa esteja logada (Coloque a string exata que o C# devolve para usuários comuns, ex: 'Customer' ou 'User')
+protegerRota('Customer');
+
 import { getEvents } from "../../shared/eventService.js";
 
 function formatarDataCurta(dataString) {
@@ -62,6 +67,15 @@ function renderizarEventosUsuario(events) {
             </div>
         `;
     }).join("");
+}
+
+const btnLogout = document.getElementById('btn-logout');
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        limparSessao();
+        window.location.href = "../login/login.html";
+    });
 }
 
 async function initUserHome() {

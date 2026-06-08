@@ -1,3 +1,8 @@
+import { protegerRota } from "../../shared/authService.js";
+
+// Exige que a pessoa esteja logada (Coloque a string exata que o C# devolve para usuários comuns, ex: 'Customer' ou 'User')
+protegerRota('Customer');
+
 import { getEventById } from "../../shared/eventService.js";
 
 const urlParams = new URLSearchParams(window.location.search);
