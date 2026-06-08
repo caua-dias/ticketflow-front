@@ -59,6 +59,17 @@ body {
 
 .btn-register:hover { filter: brightness(1.1); }
 
+.profile-link { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.5rem; 
+    color: #FFFFFF; 
+}
+.profile-link .material-symbols-outlined { 
+    font-size: 24px; 
+    color: #00D2DF; 
+}
+
 /* --- MAIN CONTENT & HERO --- */
 .main-content {
     padding: 8rem 2rem 4rem 2rem;

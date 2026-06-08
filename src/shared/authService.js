@@ -101,3 +101,28 @@ export function protegerRota(roleNecessaria = null) {
         throw new Error("Redirecionando. Permissão negada.");
     }
 }
+
+/**
+ * Decodifica o Token JWT para pegar as informações embutidas (Claims)
+ */
+export function getLoggedUserId() {
+    const token = localStorage.getItem('ticketflow_token');
+    if (!token) return null;
+
+    try {
+        // O token JWT tem 3 partes separadas por ponto. A 2ª parte é o Payload (onde estão os dados)
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const payloadInfo = JSON.parse(jsonPayload);
+        
+        // O .NET salva o NameIdentifier usando essa chave longa de schema XML
+        return payloadInfo['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    } catch (error) {
+        console.error("Erro ao decodificar o token:", error);
+        return null;
+    }
+}

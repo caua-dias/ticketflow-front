@@ -1,0 +1,141 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: #FFFFFF; display: flex; flex-direction: column; min-height: 100vh; }
+
+.header { position: fixed; top: 0; width: 100%; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); z-index: 10; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.logo { display: flex; align-items: center; }
+.logo .material-symbols-outlined { color: var(--button-color); font-size: 28px; }
+.text-logo { font-weight: 700; font-size: 1.25rem; padding-left: 0.5rem; color: #FFFFFF;}
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav-link { color: var(--gray-text); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.nav-link:hover { color: #FFFFFF; }
+
+.main-content { padding: 7rem 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
+
+.profile-header { margin-bottom: 3rem; }
+.subtitle { color: #00D2DF; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 0.5rem; }
+.profile-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.profile-header p { color: var(--gray-text); font-size: 1rem; }
+
+.profile-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+
+.profile-section h2 { font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+
+/* Formulário */
+.form-container { background-color: var(--box-color); padding: 2rem; border-radius: 12px; display: flex; flex-direction: column; gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-group label { font-size: 0.75rem; font-weight: 700; color: var(--gray-text); }
+.form-group input { background-color: var(--bg-color); border: 1px solid transparent; color: #FFFFFF; padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.9rem; outline: none; transition: border 0.2s; }
+.form-group input:focus { border: 1px solid #00D2DF; }
+.form-group input:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-submit { background-color: var(--button-color); color: #FFFFFF; border: none; padding: 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: filter 0.2s; }
+.btn-submit:hover { filter: brightness(1.1); }
+
+/* Ingressos Grid e Estrutura do Card */
+.tickets-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+}
+
+.ticket-card { 
+    background-color: var(--box-color); 
+    border-radius: 12px; 
+    padding: 1.5rem; 
+    display: flex; 
+    flex-direction: column; /* Mudado para empilhar a área expansível abaixo */
+    align-items: stretch; 
+    border-left: 4px solid #00D2DF; 
+    transition: all 0.3s ease-in-out;
+}
+
+.ticket-card.cancelled { 
+    border-left-color: #FF4D4D; 
+    opacity: 0.7; 
+}
+
+/* Área visível principal do card */
+.ticket-main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Indica que o card inteiro é clicável */
+}
+
+.ticket-info h3 { 
+    font-size: 1.2rem; 
+    margin-bottom: 0.25rem; 
+}
+
+.ticket-info p { 
+    color: var(--gray-text); 
+    font-size: 0.85rem; 
+    margin-bottom: 0.5rem; 
+}
+
+.ticket-hash { 
+    font-family: monospace; 
+    background-color: var(--bg-color); 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    font-size: 0.8rem; 
+    color: #48E5C2; 
+}
+
+.ticket-status { 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    text-transform: uppercase; 
+}
+
+.status-Disponivel { background-color: rgba(72, 229, 194, 0.2); color: #48E5C2; }
+.status-Usado { background-color: rgba(155, 164, 181, 0.2); color: var(--gray-text); }
+.status-Cancelado { background-color: rgba(255, 77, 77, 0.2); color: #FF4D4D; }
+
+/* ─── NOVA SEÇÃO EXPANSÍVEL ─── */
+.ticket-expanded-info {
+    max-height: 0; /* Começa totalmente fechado */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    padding-top: 0;
+    border-top: 1px solid transparent;
+}
+
+/* Estado quando o card ganha a classe .expanded */
+.ticket-card.expanded {
+    background-color: #233044; /* Destaca levemente o card aberto */
+}
+
+.ticket-card.expanded .ticket-expanded-info {
+    max-height: 200px; /* Limite seguro para abertura */
+    opacity: 1;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.info-line {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+}
+
+.info-line .material-symbols-outlined {
+    font-size: 18px;
+    color: #00D2DF; /* Ícones combinando com a identidade visual */
+}
+
+.info-line strong {
+    color: #FFFFFF;
+}
+
+@media (max-width: 900px) {
+    .profile-layout { grid-template-columns: 1fr; }
+}
