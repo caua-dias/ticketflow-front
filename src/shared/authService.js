@@ -67,7 +67,7 @@ export function isAuthenticated() {
 
 /**
  * Função para proteger páginas privadas
- * @param {string} roleNecessaria - Ex: 'Manager' ou 'Customer' (opcional)
+ * @param {string} roleNecessaria - Ex: 'Manager' ou 'Custumer' (opcional)
  */
 export function protegerRota(roleNecessaria = null) {
     const token = localStorage.getItem('ticketflow_token');
@@ -89,7 +89,7 @@ export function protegerRota(roleNecessaria = null) {
 
         if (role === 'Manager') {
             window.location.href = "../home-admin/home-admin.html";
-        } else if (role === 'Customer') { // Ajuste para a string exata que sua API C# devolve para o cliente
+        } else if (role === 'Custumer') { // Ajuste para a string exata que sua API C# devolve para o cliente
             window.location.href = "../user-home/user-home.html";
         } else {
             // Se a role estiver completamente bugada no cache, expulsa pro login

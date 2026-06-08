@@ -14,7 +14,6 @@ form.addEventListener("submit", async (e) => {
     try {
         // Envia para a API validar
         const responseData = await loginUser(email, password);
-
         // A API retorna o token e os dados do usuário (incluindo o role)
         // Vamos usar a função que criamos para salvar no localStorage
         salvarSessao(responseData.token, responseData.role);
@@ -36,4 +35,6 @@ form.addEventListener("submit", async (e) => {
         // Se a API retornar erro (senha errada, usuário não existe)
         alert(error.message);
     }
+
+    
 });
