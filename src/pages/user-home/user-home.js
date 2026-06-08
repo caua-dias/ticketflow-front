@@ -1,5 +1,5 @@
-import { protegerRota } from "../../shared/authService.js";
-
+// Onde antes estava apenas protegerRota, mude para:
+import { protegerRota, limparSessao } from "../../shared/authService.js";
 // Exige que a pessoa esteja logada (Coloque a string exata que o C# devolve para usuários comuns, ex: 'Customer' ou 'User')
 protegerRota('Customer');
 

@@ -1,5 +1,5 @@
-import { protegerRota } from "../../shared/authService.js";
-
+// Onde antes estava apenas protegerRota, mude para:
+import { protegerRota, limparSessao } from "../../shared/authService.js";
 // Exige que a pessoa esteja logada E seja um 'Manager'
 protegerRota('Manager');
 
@@ -60,5 +60,14 @@ document.getElementById('btn-delete').addEventListener('click', async () => {
         window.location.href = '../home-admin/home-admin.html';
     }
 });
+
+const btnLogout = document.getElementById('btn-logout');
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        limparSessao();
+        window.location.href = "../login/login.html";
+    });
+}
 
 carregarEvento();

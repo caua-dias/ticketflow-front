@@ -1,5 +1,5 @@
-import { protegerRota } from "../../shared/authService.js";
-
+// Onde antes estava apenas protegerRota, mude para:
+import { protegerRota, limparSessao } from "../../shared/authService.js";
 // Exige que a pessoa esteja logada (Coloque a string exata que o C# devolve para usuários comuns, ex: 'Customer' ou 'User')
 protegerRota('Customer');
 import { getEventById } from "../../shared/eventService.js";
@@ -61,4 +61,14 @@ async function carregarEvento() {
 document.getElementById('btn-buy').addEventListener('click', () => {
     window.location.href = `../user-payment/user-payment.html?id=${eventId}`;
 });
+
+const btnLogout = document.getElementById('btn-logout');
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        limparSessao();
+        window.location.href = "../login/login.html";
+    });
+}
+
 carregarEvento();

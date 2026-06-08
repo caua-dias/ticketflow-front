@@ -1,5 +1,4 @@
-import { protegerRota } from "../../shared/authService.js";
-
+import { protegerRota, limparSessao } from "../../shared/authService.js";
 // Exige que a pessoa esteja logada E seja um 'Manager'
 protegerRota('Manager');
 import { saveEvent } from "../../shared/eventService.js";
@@ -26,3 +25,13 @@ form.addEventListener('submit', async (e) => {
 
     window.location.href = '../home-admin/home-admin.html';
 });
+
+// Lógica de Logout
+const btnLogout = document.getElementById('btn-logout');
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        limparSessao(); // Apaga o token e a role do localStorage
+        window.location.href = "../login/login.html"; // Redireciona para o login
+    });
+}

@@ -1,5 +1,5 @@
-import { protegerRota } from "../../shared/authService.js";
-
+// Onde antes estava apenas protegerRota, mude para:
+import { protegerRota, limparSessao } from "../../shared/authService.js";
 // Exige que a pessoa esteja logada (Coloque a string exata que o C# devolve para usuários comuns, ex: 'Customer' ou 'User')
 protegerRota('Customer');
 
@@ -102,6 +102,16 @@ document.getElementById('btn-simulate').addEventListener('click', () => {
         window.location.href = '../user-home/user-home.html';
     }, 2500);
 });
+
+// Lógica de Logout
+const btnLogout = document.getElementById('btn-logout');
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        limparSessao(); // Apaga o token e a role do localStorage
+        window.location.href = "../login/login.html"; // Redireciona para o login
+    });
+}
 
 // Inicia
 carregarResumo();

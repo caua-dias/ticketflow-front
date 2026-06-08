@@ -1,5 +1,5 @@
-import { protegerRota } from "../../shared/authService.js";
-
+// Onde antes estava apenas protegerRota, mude para:
+import { protegerRota, limparSessao } from "../../shared/authService.js";
 // Exige que a pessoa esteja logada E seja um 'Manager'
 protegerRota('Manager');
 import { getEvents, deleteEvent } from "../../shared/eventService.js";
